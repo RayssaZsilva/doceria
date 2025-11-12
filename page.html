@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EdeBea doces</title>
+  <style>
+    :root{
+      --pink-1: #ffd6ec;
+      --pink-2: #ffb6c1;
+      --accent: #ff69b4;
+      --tag-bg: rgba(255,255,255,0.7);
+      --card-bg: rgba(255,255,255,0.85);
+      --shadow: 0 8px 24px rgba(0,0,0,0.12);
+      --radius: 14px;
+      --glass: rgba(255,255,255,0.22);
+      
+    }
+    *{box-sizing: border-box; font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+    body{
+      margin:0;
+      background: linear-gradient(90deg, #fff3b8 0%, #ffd2ee 50%, #ffb6f5 100%);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 18px;
+      color:#333;
+      padding:24px;
+    }
+
+
+    header{
+      width:100%;
+      max-width:1100px;
+      text-align:center;
+      padding:36px 12px;
+      border-radius:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.25), rgba(255,255,255,0.08));
+      box-shadow: var(--shadow);
+    }
+
+    header h1{
+      margin:0;
+      font-size:48px;
+      letter-spacing:1px;
+      color:#f6d0ff;
+      text-shadow: 0 6px 20px rgba(255,255,255,0.4), 0 4px 8px rgba(0,0,0,0.12);
+    }
+.logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 48px;
+  color: #e15dba;
+  text-shadow: 0 0 5px #f5f770, 0 0 10px #642764, 0 0 20px #ff69b4;
+  animation: blink 1.5s infinite alternate;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+    text-shadow: 0 0 5px #ffb6c1, 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 40px #ff1493;
+  }
+  to {
+    opacity: 0.6;
+    text-shadow: 0 0 2px #ffb6c1, 0 0 5px #ff69b4, 0 0 10px #ff69b4;
+  }
+}
+
+    .container{
+      width:100%;
+      max-width:1100px;
+      background: transparent;
+    }
+
+    /* produtos area */
+    .produtos{
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap:20px;
+      align-items:start;
+      margin-bottom:8px;
+    }
+
+    .card{
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding:12px;
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      position:relative;
+      overflow:visible;
+    }
+
+    .tag{
+      position:absolute;
+      top:-14px;
+      left:12px;
+      background: var(--tag-bg);
+      padding:6px 10px;
+      border-radius:10px;
+      font-weight:700;
+      color: #4a2b4a;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      border: 1px solid rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      font-size:13px;
+    }
+
+    .card img{
+      width:100%;
+      height:150px;
+      object-fit:cover;
+      border-radius:10px;
+      margin-bottom:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+    }
+
+    .info{
+      text-align:center;
+      padding:4px 6px 8px 6px;
+      flex-grow:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .info h3{
+      margin:6px 0 4px 0;
+      font-size:18px;
+      color:#5b235b;
+    }
+
+    .info p{
+      margin:0;
+      font-weight:700;
+      color:#333;
+    }
+
+    .btn-add{
+      margin-top:10px;
+      background: var(--accent);
+      color:white;
+      border:none;
+      padding:10px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:700;
+      box-shadow: 0 6px 14px rgba(255,105,180,0.25);
+    }
+
+    /* carrinho */
+    .carrinho{
+      margin-top:8px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.85));
+      border-radius:16px;
+      padding:14px;
+      box-shadow: var(--shadow);
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .carrinho .itens{
+      min-width:220px;
+      max-width:760px;
+    }
+
+    .itens ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      max-height:140px;
+      overflow:auto;
+    }
+
+    .itens li{
+      background: rgba(255,255,255,0.9);
+      padding:8px 10px;
+      border-radius:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      border:1px solid rgba(0,0,0,0.03);
+    }
+
+    .itens li .remove{
+      background: transparent;
+      border: none;
+      color:#c0392b;
+      font-weight:700;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    .totais{
+      text-align:right;
+      min-width:160px;
+    }
+
+    .totais p{ margin:4px 0; font-weight:700; font-size:18px; color:#4b2b4b; }
+
+    .finalizar{
+      width:100%;
+      max-width:220px;
+      background: #25D366; /* whatsapp green */
+      color:white;
+      border:none;
+      padding:12px 14px;
+      border-radius:12px;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow: 0 8px 20px rgba(37,211,102,0.18);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      justify-content:center;
+    }
+
+    .finalizar:active{ transform:translateY(1px); }
+
+    /* adicionar secao button estilo da imagem */
+    .add-section{
+      margin-top:14px;
+      width:100%;
+      max-width:1100px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .add-section button{
+      background: transparent;
+      border:2px dashed rgba(0,0,0,0.08);
+      padding:14px 20px;
+      border-radius:12px;
+      width:100%;
+      max-width:420px;
+      font-weight:700;
+      cursor:pointer;
+      color:#5b235b;
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    /* responsivo */
+    @media (max-width:640px){
+      header h1{ font-size:34px; }
+      .card img{ height:130px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class=" logo">EdeBea doces</h1>
+
+  </header>
+
+  <main class="container">
+    <section class="produtos" id="produtos">
+      <!-- Cone -->
+      <article class="card">
+        <div class="tag">Cone</div>
+
+        <img src="img/Cone.jpg" alt="Cone">
+
+        <div class="info">
+          <div>
+            <h3>Cone recheado</h3>
+            <p>R$ 7,00</p>
+          </div>
+          <button class="btn-add" onclick="adicionar('Cone',7)">adicionar</button>
+        </div>
+      </article>
+
+      <!-- Bolo de pote -->
+      <article class="card">
+        <div class="tag">Bolo de pote</div>
+        <img src="img/B.L.jpg" alt="Bolo de pote">
+        <div class="info">
+          <div>
+            <h3>Bolo de pote</h3>
+            <p>R$ 12,00</p>
+          </div>
+          <button class="btn-add" onclick="adicionar('Bolo de pote',12)">adicionar</button>
+        </div>
+      </article>
+
+      <!-- Gelinho -->
+      <article class="card">
+        <div class="tag">Gelinho</div>
+        <img src="img/G.L.jfif" alt="Gelinho">
+        <div class="info">
+          <div>
+            <h3>Gelinho</h3>
+            <p>R$ 3,50</p>
+          </div>
+          <button class="btn-add" onclick="adicionar('Gelinho',3.5)">adicionar</button>
+        </div>
+      </article>
+
+      <!-- Morango do amor -->
+      <article class="card">
+        <div class="tag">Morango do amor</div>
+        <img src="img/M.a" alt="Morango do amor">
+        <div class="info">
+          <div>
+            <h3>Morango do amor (unidade)</h3>
+            <p>R$ 5,00</p>
+          </div>
+          <button class="btn-add" onclick="adicionar('Morango do amor',5)">adicionar</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="carrinho" aria-label="Carrinho">
+      <div class="itens">
+        <h3 style="margin:0 0 8px 0; color:#5b235b;">🛒 Seu Pedido</h3>
+        <ul id="lista">
+          <!-- itens vão aparecer aqui -->
+        </ul>
+      </div>
+
+      <div class="totais">
+        <p id="totalText">Total: R$ 0,00</p>
+        <small style="display:block; color:rgba(0,0,0,0.55);">Itens: <span id="count">0</span></small>
+        <div style="height:12px"></div>
+        <button class="finalizar" onclick="finalizar()">
+          Finalizar pedido
+        </button>
+      </div>
+    </section>
+
+    <div class="add-section">
+      <button>＋ Adicionar seção</button>
+    </div>
+  </main>
+
+  <script>
+    // Dados do seu WhatsApp (já coloquei o código do país BR +55)
+    const WHATSAPP_PHONE = "5511941812072";
+
+    // estado do carrinho
+    let carrinho = [];
+    let total = 0;
+
+    // adicionar item (nome, preco)
+    function adicionar(nome, preco){
+      // se quiser, podemos permitir quantidade; por enquanto adiciona como 1 unidade por clique
+      const item = { nome, preco, id: Date.now() + Math.random().toString(36).slice(2,8) };
+      carrinho.push(item);
+      total = (Number(total) + Number(preco));
+      atualizarCarrinho();
+      // pequeno feedback visual
+      const btn = event.currentTarget;
+      if(btn){
+        btn.textContent = "adicionado ✓";
+        setTimeout(()=> btn.textContent = "adicionar",700);
+      }
+    }
+
+    function atualizarCarrinho(){
+      const lista = document.getElementById('lista');
+      lista.innerHTML = "";
+      const count = document.getElementById('count');
+      const totalText = document.getElementById('totalText');
+
+      carrinho.forEach((it, idx) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span style="flex:1">${it.nome} <small style="color:#6a6a6a"> — R$ ${Number(it.preco).toFixed(2)}</small></span>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <button class="remove" onclick="remover('${it.id}')">remover</button>
+          </div>
+        `;
+        lista.appendChild(li);
+      });
+
+      count.textContent = carrinho.length;
+      totalText.textContent = `Total: R$ ${Number(total).toFixed(2)}`;
+    }
+
+    function remover(id){
+      const idx = carrinho.findIndex(i => i.id === id);
+      if(idx > -1){
+        total = Number(total) - Number(carrinho[idx].preco);
+        carrinho.splice(idx,1);
+        atualizarCarrinho();
+      }
+    }
+
+    function finalizar(){
+      if(carrinho.length === 0){
+        alert("Seu carrinho está vazio! Adicione algum produto antes de finalizar.");
+        return;
+      }
+
+      // Monta mensagem
+      let mensagem = "Olá! Gostaria de fazer um pedido.%0A%0A";
+      carrinho.forEach((it, i) => {
+        mensagem += `${i+1}. ${encodeURIComponent(it.nome)} — R$ ${Number(it.preco).toFixed(2)}%0A`;
+      });
+      mensagem += `%0A*Total:* R$ ${Number(total).toFixed(2)}%0A%0A`;
+      mensagem += "Nome do cliente:%0ATelefone para contato:%0AEndereco (opcional):";
+
+      // Monta URL do WhatsApp
+      const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${mensagem}`;
+
+      // Abre em nova aba / app
+      window.open(url, "_blank");
+    }
+
+    // inicializa carrinho vazio
+    atualizarCarrinho();
+  </script>
+</body>
+</html>
