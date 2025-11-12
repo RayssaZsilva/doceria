@@ -407,7 +407,7 @@
         mensagem += `${i+1}. ${encodeURIComponent(it.nome)} — R$ ${Number(it.preco).toFixed(2)}%0A`;
       });
       mensagem += `%0A*Total:* R$ ${Number(total).toFixed(2)}%0A%0A`;
-      mensagem += "Nome do cliente:%0ATelefone para contato:%0AEndereco (opcional):";
+      mensagem += "Nome do cliente:%0ATelefone para contato:%0AEndereco:";
 
       // Monta URL do WhatsApp
       const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${mensagem}`;
